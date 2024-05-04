@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "id": "0",
+      "name": "User",
+      "email": "User@teaminder.com",
+      "password": "12345678"
+    },
+    {
+      "id": "e0a7",
+      "name": "User_2",
+      "email": "user_2@teaminder.com",
+      "password": "12345678"
+    },
+    {
+      "id": "4657",
+      "name": "User_3",
+      "email": "user_3@teaminder.com",
+      "password": "12345678"
+    }
+  ],
+  "teas": [
+    {
+      "id": "1",
+      "userId": "0",
+      "name": "Tea_1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. "
+    },
+    {
+      "id": "8c34",
+      "name": "Tea_2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "0"
+    },
+    {
+      "id": "4fdf",
+      "name": "Tea_3",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "0"
+    },
+    {
+      "id": "c648",
+      "name": "Tea_4",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "0"
+    },
+    {
+      "id": "c23e",
+      "name": "Tea_5",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "0857",
+      "name": "Tea_6",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "d979",
+      "name": "Tea_7",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "b12e",
+      "name": "Tea_8",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "e126",
+      "name": "Tea_9",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "2b71",
+      "name": "Tea_10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "945b",
+      "name": "Tea_11",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    },
+    {
+      "id": "e86d",
+      "name": "Tea_12",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue porttitor ligula, vitae blandit tortor convallis sodales. Donec vel nulla a dui semper sollicitudin ut et libero. ",
+      "userId": "4657"
+    }
+  ]
+}
