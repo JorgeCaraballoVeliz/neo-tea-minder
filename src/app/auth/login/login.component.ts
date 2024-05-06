@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterModule],
   template: `<h3>LOGIN</h3>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div>
@@ -26,6 +27,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
  //authservice: AuthService = inject(AuthService);
  loginForm: FormGroup;
+ router: Router = inject(Router);
 
  constructor(private authService: AuthService) {
    this.loginForm = new FormGroup({
@@ -37,11 +39,23 @@ export class LoginComponent {
  }
 
  login() {
-   console.log(this.loginForm.value);
+   //console.log(this.loginForm.value);
    //console.log(this.loginForm.value.email);
    this.authService.Login(this.loginForm.value.email, this.loginForm.value.contraseña).subscribe({
     next: (response) => {
-      console.log(response)
+      //console.log(response[0].password)
+      if(response.length == 0 ) {
+        console.log('USUARIO NO EXISTE')
+      } else if (response[0].password == this.loginForm.value.contraseña) {
+        //storage
+        console.log('USUARIO CORRECTO');
+        sessionStorage.setItem('loggedId', response[0].id);
+        console.log(sessionStorage.getItem('loggedId'))
+        this.router.navigate(['/'])
+
+      } else {
+        console.log('CONTRASEÑA INCORRECTA')
+      }
     }
    })
  }

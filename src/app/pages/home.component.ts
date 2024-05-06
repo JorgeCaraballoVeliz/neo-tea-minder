@@ -33,8 +33,8 @@ import { HttpClient } from '@angular/common/http';
       <span>Tea Minder WELCOME: {{ user }}</span>
       <span class="spacer"></span>
 
-      <button mat-icon-button>
-        <mat-icon>logout</mat-icon>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon >logout</mat-icon>
       </button>
     </mat-toolbar>
     <div>
@@ -91,35 +91,47 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.teaService.getUserInfo('4657').subscribe({
-      next: (response) => {
-        console.log(response);
-        this.user = response.name;
-        //
-        this.teaService.getTeaInfo(response.id).subscribe({
-          next: (response2) => {
-            console.log(response2)
-            this.data = response2;
-          }
-        })
-        //this.outputTea = response.userId;
-        //response2[3].name
-        
-      }
-    })
-    //console log teas
-    this.httpClient.get('http://localhost:3000/teas').subscribe({
-      next: (response) => {
-        console.log('TEAS: ');
-        console.log(response);
-      }
-    })
-    //console log users
-    this.httpClient.get('http://localhost:3000/users').subscribe({
-      next: (response) => {
-        console.log('USERS: ');
-        console.log(response);
-      }
-    })
+    const loggedId = sessionStorage.getItem('loggedId');
+    if(loggedId) {
+      //console.log(sessionStorage.getItem('loggedId'))
+    
+      this.teaService.getUserInfo(loggedId).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.user = response.name;
+          //
+          this.teaService.getTeaInfo(response.id).subscribe({
+            next: (response2) => {
+              console.log(response2)
+              this.data = response2;
+            }
+          })
+          //this.outputTea = response.userId;
+          //response2[3].name
+          
+        }
+      })
+    }
+    
+    // //console log teas
+    // this.httpClient.get('http://localhost:3000/teas').subscribe({
+    //   next: (response) => {
+    //     console.log('TEAS: ');
+    //     console.log(response);
+    //   }
+    // })
+    // //console log users
+    // this.httpClient.get('http://localhost:3000/users').subscribe({
+    //   next: (response) => {
+    //     console.log('USERS: ');
+    //     console.log(response);
+    //   }
+    // })
+  }
+
+  logout() {
+    sessionStorage.removeItem('loggedId');
+    console.log('SESION CERRADA');
+    this.router.navigate(['/auth/login'])
   }
 }

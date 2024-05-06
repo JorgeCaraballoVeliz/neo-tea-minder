@@ -16,12 +16,6 @@ export class AuthService {
   Login(user: string, pass: string): Observable<UserInfoResponse2[]> {
     console.log("llegaron al servicio: ", user, pass)
     this._user.next(user);
-    if(user == 'user_3@teaminder.com') {
-      console.log('USUARIO CORRECTO');
-    }
-    if(pass == '12345678') {
-      console.log('PASSWORD CORRECTA')
-    }
     return this.httpClient
     .get<UserInfoResponse2[]>(PATH_URL_USERS, {
       params: new HttpParams().set('email', user)
