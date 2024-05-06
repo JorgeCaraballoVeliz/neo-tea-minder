@@ -11,16 +11,17 @@ import { Router, RouterModule } from '@angular/router';
   template: `<h3>LOGIN</h3>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div>
-        <label for="email">Introduzca su correo electrónico:</label>
+        <label for="email">Introduce your email:</label>
         <input type="email" name="email" formControlName="email">
     </div>
     <div>
-        <label for="contraseña">Introduzca su contraseña:</label>
+        <label for="contraseña">Introduce your password:</label>
         <input type="password" name="contraseña" formControlName="contraseña">
     </div>
     <br>
-    <button type="submit" [disabled]="loginForm.invalid"> Iniciar sesión </button>
+    <button type="submit" [disabled]="loginForm.invalid"> Log in </button>
 </form>
+<div>If you don't have an account, <button (click)="toRegister()">SIGN UP HERE</button></div>
   `,
   styleUrl: './login.component.scss'
 })
@@ -59,4 +60,9 @@ export class LoginComponent {
     }
    })
  }
+
+ toRegister() {
+  this.router.navigate(['/auth/register'])
+ }
+
 }

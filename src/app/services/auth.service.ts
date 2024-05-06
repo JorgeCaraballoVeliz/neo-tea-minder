@@ -23,6 +23,15 @@ export class AuthService {
 
     
   }
+
+  Register(username: string, email: string, pass: string): Observable<UserInfoResponse2> {
+    console.log("llegaron al servicio: ", username, email, pass)
+    return this.httpClient
+    .post<UserInfoResponse2>(PATH_URL_USERS, {
+      ...HttpParams,
+    });
+  }
+  
 }
 /*
 getUserInfo(Id: string): Observable<UserInfoResponse2> {
