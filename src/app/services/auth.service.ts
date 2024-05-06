@@ -26,10 +26,24 @@ export class AuthService {
 
   Register(username: string, email: string, pass: string): Observable<UserInfoResponse2> {
     console.log("llegaron al servicio: ", username, email, pass)
+    const idnum = this.Length.length;
+    console.log(idnum)
+    const params = {
+      id: idnum,
+      name: username,
+      email: email,
+      password: pass
+    }
     return this.httpClient
-    .post<UserInfoResponse2>(PATH_URL_USERS, {
-      ...HttpParams,
-    });
+    .post<UserInfoResponse2>(PATH_URL_USERS, params);
+  }
+
+  Length(): Observable<UserInfoResponse2> {
+    
+    return this.httpClient
+    .get<UserInfoResponse2>(PATH_URL_USERS)
+
+    
   }
   
 }
