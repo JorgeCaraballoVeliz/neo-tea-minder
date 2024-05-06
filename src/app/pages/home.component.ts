@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import {
@@ -11,6 +11,8 @@ import {
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { filter, map } from 'rxjs';
+import { GetTeaService, UserInfoResponse, UserInfoResponse2 } from '../services/get-tea.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'home-component',
@@ -28,16 +30,26 @@ import { filter, map } from 'rxjs';
       <button *ngIf="canBack" mat-icon-button [routerLink]="['/teas']">
         <mat-icon>arrow_back</mat-icon>
       </button>
-      <span>Tea Minder</span>
+      <span>Tea Minder WELCOME: {{ user }}</span>
       <span class="spacer"></span>
 
       <button mat-icon-button>
         <mat-icon>logout</mat-icon>
       </button>
     </mat-toolbar>
+    <div>
+      <button>CREAR</button>
+    </div>
     <div class="global-container">
-      <mat-card>
-        <mat-card-content>
+      <mat-card *ngFor="let item of data">
+        <mat-card-content >
+        <span>{{ item.name }}</span>
+        <br>
+        <span>{{ item.description }}</span>
+        <div>
+          <button>BORRAR</button>
+          <button>ACTUALIZAR(meter form)</button>
+        </div>
           <router-outlet></router-outlet>
         </mat-card-content>
       </mat-card>
@@ -60,6 +72,12 @@ export class HomeComponent implements OnInit {
   location: Location = inject(Location);
   router: Router = inject(Router);
   canBack = false;
+//
+  private teaService: GetTeaService = inject(GetTeaService);
+  private httpClient = inject(HttpClient);
+  //outputTea!: string;
+  user!: string;
+  @Input() data: UserInfoResponse[] = []
 
   constructor() {
     this.router.events
@@ -72,5 +90,36 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    this.teaService.getUserInfo('4657').subscribe({
+      next: (response) => {
+        console.log(response);
+        this.user = response.name;
+        //
+        this.teaService.getTeaInfo(response.id).subscribe({
+          next: (response2) => {
+            console.log(response2)
+            this.data = response2;
+          }
+        })
+        //this.outputTea = response.userId;
+        //response2[3].name
+        
+      }
+    })
+    //console log teas
+    this.httpClient.get('http://localhost:3000/teas').subscribe({
+      next: (response) => {
+        console.log('TEAS: ');
+        console.log(response);
+      }
+    })
+    //console log users
+    this.httpClient.get('http://localhost:3000/users').subscribe({
+      next: (response) => {
+        console.log('USERS: ');
+        console.log(response);
+      }
+    })
+  }
 }
